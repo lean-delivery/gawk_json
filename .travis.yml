@@ -23,14 +23,16 @@ env:
 script:
   - dist="${DIST}"
   - git submodule update --init --recursive
-  - git describe --long
+  - git clone -b gawk-4.2.1 https://git.savannah.gnu.org/git/gawk.git
+  - cp -r gawk/* .
+  - rm -rf gawk
   - git clone https://git.code.sf.net/p/gawkextlib/code gawkextlib-code
   - cp -r gawkextlib-code/* .
   - rm -rf gawkextlib-code
   - git add -A
   - git clone https://github.com/packpack/packpack.git packpack
-  - sudo packpack/packpack
   - ls -a
+  - sudo packpack/packpack
 
 # deploy:
 #   provider: bintray
